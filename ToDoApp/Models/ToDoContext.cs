@@ -20,8 +20,10 @@ namespace ToDoApp.Models
                 new Category { CategoryId = "home", CategoryName = "Home" },
                 new Category { CategoryId = "ex", CategoryName = "Exercise" },
                 new Category { CategoryId = "shop", CategoryName = "Shopping" },
-                new Category { CategoryId = "call", CategoryName = "Contact" }
-            );
+                new Category { CategoryId = "call", CategoryName = "Contact" },
+				new Category { CategoryId = "other", CategoryName = "Other" }
+
+			);
 
             modelBuilder.Entity<Status>().HasData(
                 new Status { StatusId = "open", StatusName = "Open" },
