@@ -5,7 +5,8 @@ namespace ToDoApp.Models
 {
     public class ToDo
     {
-        public string Id { get; set; } = string.Empty;
+        [Key]
+        public int Id { get; set; } 
         [Required(ErrorMessage = "Please provide a description.")]
         public string Description { get; set; } = string.Empty;
         [Required(ErrorMessage = "Please provide a due date.")]

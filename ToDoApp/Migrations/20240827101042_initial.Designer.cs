@@ -12,7 +12,7 @@ using ToDoApp.Models;
 namespace ToDoApp.Migrations
 {
     [DbContext(typeof(ToDoContext))]
-    [Migration("20240827053336_initial")]
+    [Migration("20240827101042_initial")]
     partial class initial
     {
         /// <inheritdoc />
@@ -94,8 +94,11 @@ namespace ToDoApp.Migrations
 
             modelBuilder.Entity("ToDoApp.Models.ToDo", b =>
                 {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("CategoryId")
                         .IsRequired()

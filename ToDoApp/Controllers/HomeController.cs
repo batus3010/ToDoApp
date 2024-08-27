@@ -103,7 +103,7 @@ namespace ToDoApp.Controllers
             return RedirectToAction("Index", new { Id = id });
         }
 
-        public IActionResult DeleteCompleted([FromRoute] string id)
+        public IActionResult DeleteComplete([FromRoute] string id)
         {
             var toDelete = _context.ToDos.Where(t => t.StatusId == "closed").ToList();
             foreach (var todo in toDelete)

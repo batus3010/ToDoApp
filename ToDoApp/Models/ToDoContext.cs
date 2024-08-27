@@ -27,6 +27,10 @@ namespace ToDoApp.Models
                 new Status { StatusId = "open", StatusName = "Open" },
                 new Status { StatusId = "closed", StatusName = "Completed" }
             );
-        }
+
+			modelBuilder.Entity<ToDo>()
+			.Property(t => t.Id)
+			.ValueGeneratedOnAdd();  // Ensure that Id is auto-generated
+		}
     }
 }
