@@ -24,6 +24,13 @@
 				</select>
 			</div>
 
+			<div class="mb-3">
+				<label class="form-label">Priority:</label>
+				<select name="filter" class="form-select" asp-items="@(new SelectList(ViewBag.Priorities, "PriorityId", "PriorityName", ViewBag.Filters.PriorityId))">
+					<option value="all">All</option>
+				</select>
+			</div>
+
 			<button type="submit" class="btn btn-primary">Filter</button>
 			<a asp-action="Index" asp-route-id="" class="btn btn-primary">Clear</a>
 

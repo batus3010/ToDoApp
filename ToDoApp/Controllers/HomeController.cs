@@ -19,6 +19,7 @@ namespace ToDoApp.Controllers
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Statuses = _context.Statuss.ToList();
             ViewBag.DueFilters = Filters.DueFilterValues;
+            ViewBag.Priorities = _context.Priorities.ToList();
 
             IQueryable<ToDo> query = _context.ToDos
                 .Include(t => t.Category)
@@ -51,6 +52,11 @@ namespace ToDoApp.Controllers
                 }
             }
 
+            if (filters.HasPriority)
+			{
+				query = query.Where(t => t.PriorityId == filters.PriorityId);
+			}
+
             var tasks = query.OrderBy(t => t.DueTime).ToList();
 
             return View(tasks);
@@ -62,7 +68,8 @@ namespace ToDoApp.Controllers
         {
             ViewBag.Categories = _context.Categories.ToList();
             ViewBag.Statuses = _context.Statuss.ToList();
-            var task = new ToDo { StatusId = "open" };
+            ViewBag.Priorities = _context.Priorities.ToList();
+            var task = new ToDo { StatusId = "open", PriorityId = "low" };
             return View(task);
         }
 
@@ -79,6 +86,7 @@ namespace ToDoApp.Controllers
             {
                 ViewBag.Categories = _context.Categories.ToList();
                 ViewBag.Statuses = _context.Statuss.ToList();
+                ViewBag.Priorities = _context.Priorities.ToList();
                 return View(task);
             }
         }

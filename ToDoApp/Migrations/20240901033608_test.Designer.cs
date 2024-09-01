@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using ToDoApp.Models;
 
@@ -11,9 +12,11 @@ using ToDoApp.Models;
 namespace ToDoApp.Migrations
 {
     [DbContext(typeof(ToDoContext))]
-    partial class ToDoContextModelSnapshot : ModelSnapshot
+    [Migration("20240901033608_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,37 +71,6 @@ namespace ToDoApp.Migrations
                         });
                 });
 
-            modelBuilder.Entity("ToDoApp.Models.Priority", b =>
-                {
-                    b.Property<string>("PriorityId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PriorityName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("PriorityId");
-
-                    b.ToTable("Priorities");
-
-                    b.HasData(
-                        new
-                        {
-                            PriorityId = "low",
-                            PriorityName = "Low"
-                        },
-                        new
-                        {
-                            PriorityId = "normal",
-                            PriorityName = "Normal"
-                        },
-                        new
-                        {
-                            PriorityId = "high",
-                            PriorityName = "High"
-                        });
-                });
-
             modelBuilder.Entity("ToDoApp.Models.Status", b =>
                 {
                     b.Property<string>("StatusId")
@@ -144,10 +116,6 @@ namespace ToDoApp.Migrations
                     b.Property<DateTime>("DueTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("PriorityId")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("StatusId")
                         .IsRequired()
                         .HasColumnType("nvarchar(450)");
@@ -155,8 +123,6 @@ namespace ToDoApp.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("PriorityId");
 
                     b.HasIndex("StatusId");
 
@@ -171,12 +137,6 @@ namespace ToDoApp.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ToDoApp.Models.Priority", "Priority")
-                        .WithMany()
-                        .HasForeignKey("PriorityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("ToDoApp.Models.Status", "Status")
                         .WithMany()
                         .HasForeignKey("StatusId")
@@ -184,8 +144,6 @@ namespace ToDoApp.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
-
-                    b.Navigation("Priority");
 
                     b.Navigation("Status");
                 });

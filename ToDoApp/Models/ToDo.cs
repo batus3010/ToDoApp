@@ -15,10 +15,13 @@ namespace ToDoApp.Models
         public string CategoryId { get; set; } = string.Empty;
         [ValidateNever]
         public Category Category { get; set; } = null!;
-        [Required(ErrorMessage = "Please select a status.")]
-        public string StatusId {  get; set; } = string.Empty;
+        public string StatusId { get; set; } = "open";
         [ValidateNever]
         public Status Status { get; set; } = null!;
+        [Required(ErrorMessage = "Please select a priority.")]
+        public string PriorityId { get; set; } = string.Empty;
+        [ValidateNever]
+        public Priority Priority { get; set; } = null!;
 
         public bool Overdue => StatusId == "open" && DueTime < DateTime.Today;
     }

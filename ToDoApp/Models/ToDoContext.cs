@@ -11,6 +11,7 @@ namespace ToDoApp.Models
         public DbSet<Category> Categories { get; set; } = null!;
 
         public DbSet<Status> Statuss { get; set; } = null!;
+        public DbSet<Priority> Priorities { get; set; } = null!;
 
         // seed data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -29,6 +30,12 @@ namespace ToDoApp.Models
                 new Status { StatusId = "open", StatusName = "Open" },
                 new Status { StatusId = "closed", StatusName = "Completed" }
             );
+
+            modelBuilder.Entity<Priority>().HasData(
+                new Priority { PriorityId = "low", PriorityName = "Low" },
+				new Priority { PriorityId = "normal", PriorityName = "Normal" },
+				new Priority { PriorityId = "high", PriorityName = "High" }
+			);
 
 			modelBuilder.Entity<ToDo>()
 			.Property(t => t.Id)
