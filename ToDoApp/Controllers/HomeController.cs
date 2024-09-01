@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using ToDoApp.Models;
 
@@ -12,7 +13,7 @@ namespace ToDoApp.Controllers
 
         public HomeController(ToDoContext context) => _context = context;
 
-        public IActionResult Index(string id)
+        public IActionResult Index(string id, string sortOrder)
         {
             var filters = new Filters(id);
             ViewBag.Filters = filters;
@@ -21,7 +22,10 @@ namespace ToDoApp.Controllers
             ViewBag.DueFilters = Filters.DueFilterValues;
             ViewBag.Priorities = _context.Priorities.ToList();
 
-            IQueryable<ToDo> query = _context.ToDos
+			// set current sort oder 
+			ViewBag.CurrentSort = sortOrder;
+
+			IQueryable<ToDo> query = _context.ToDos
                 .Include(t => t.Category)
                 .Include(t => t.Status);
 
@@ -56,10 +60,20 @@ namespace ToDoApp.Controllers
 			{
 				query = query.Where(t => t.PriorityId == filters.PriorityId);
 			}
+			// Apply sorting
+			switch (sortOrder)
+			{
+				case "date_desc":
+					query = query.OrderByDescending(t => t.DueTime);
+					break;
+				default:
+					query = query.OrderBy(t => t.DueTime);
+					break;
+			}
 
-            var tasks = query.OrderBy(t => t.DueTime).ToList();
+			var tasks = query.ToList();
 
-            return View(tasks);
+			return View(tasks);
         }
 
 

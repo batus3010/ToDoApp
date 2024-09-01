@@ -1,5 +1,9 @@
 ﻿@model IEnumerable<ToDo>
 
+@{
+	var sortOrder = ViewBag.CurrentSort as string;
+}
+
 <div class="row">
 	<div class="col-md-2">
 		<form asp-action="Filter" method="post">
@@ -42,12 +46,25 @@
             <button type="submit" class="btn btn-primary float-end">Delete completed tasks</button>
 		</form>
 		<form asp-action="MarkComplete" method="post" asp-route-id="@ViewBag.Filters.FilterString">
+
+
 			<table class="table table-borderd table-striped mt-2">
 				<thead>
 					<tr>
 						<th>Description</th>
 						<th>Category</th>
-						<th>Due</th>
+						<th>Due
+							<a asp-action="Index" asp-route-sortOrder="@(ViewBag.CurrentSort == "date_desc" ? "date_asc" : "date_desc")">
+								@if (ViewBag.CurrentSort == "date_desc")
+								{
+									<span>&#8593;</span> <!-- Up arrow -->
+								}
+								else
+								{
+									<span>&#8595;</span> <!-- Down arrow -->
+								}
+							</a>
+						</th>
 						<th>Status</th>
 						<th>Prioriy</th>
 						<th class="w-25">Actions</th>
@@ -63,7 +80,7 @@
 							<td>@task.Category.CategoryName</td>
 							<td class="@overDue">@task.DueTime.ToShortDateString()</td>
 							<td class="@overDue">@task.Status.StatusName</td>
-							<td>@task.Priority.PriorityName</td>
+							<td class=>@task.Priority.PriorityName</td>
 							<td>
 								@if (task.StatusId == "open")
 								{
