@@ -13,7 +13,7 @@ namespace ToDoApp.Migrations
 {
     [DbContext(typeof(ToDoContext))]
     [Migration("20240827101042_initial")]
-    partial class initial
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -65,9 +65,22 @@
 								}
 							</a>
 						</th>
-						<th>Status</th>
-						<th>Prioriy</th>
-						<th class="w-25">Actions</th>
+						<th>Status
+		
+						</th>
+						<th>Prioriy
+							<a asp-action="Index" asp-route-sortOrder="@(ViewBag.CurrentSort == "priority_desc" ? "priority_asc" : "priority_desc")">
+								@if (ViewBag.CurrentSort == "priority_desc")
+								{
+									<span>&#8593;</span> <!-- Up arrow -->
+								}
+								else
+								{
+									<span>&#8595;</span> <!-- Down arrow -->
+								}
+							</a>
+						</th>
+						<th class="w-25 text-center">Mark Completed</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -80,11 +93,11 @@
 							<td>@task.Category.CategoryName</td>
 							<td class="@overDue">@task.DueTime.ToShortDateString()</td>
 							<td class="@overDue">@task.Status.StatusName</td>
-							<td class=>@task.Priority.PriorityName</td>
-							<td>
+							<td>@task.Priority.PriorityName</td>
+							<td class="text-center">
 								@if (task.StatusId == "open")
 								{
-									<button type="submit" class="btn btn-primary btn-sm" name="@nameof(ToDo.Id)" value="@task.Id">Mark Completed</button>
+									<button type="submit" class="btn btn-primary btn-sm" name="@nameof(ToDo.Id)" value="@task.Id">Done✅</button>
 								}
 							</td>
 						</tr>

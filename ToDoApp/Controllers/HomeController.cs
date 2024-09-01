@@ -66,6 +66,12 @@ namespace ToDoApp.Controllers
 				case "date_desc":
 					query = query.OrderByDescending(t => t.DueTime);
 					break;
+				case "priority_desc":
+					query = query.OrderByDescending(t => t.PriorityId == "high" ? 3 : t.PriorityId == "normal" ? 2 : 1);
+                    break;
+                case "priority_asc":
+                    query = query.OrderBy(t => t.PriorityId == "high" ? 3 : t.PriorityId == "normal" ? 2 : 1);
+					break;
 				default:
 					query = query.OrderBy(t => t.DueTime);
 					break;
