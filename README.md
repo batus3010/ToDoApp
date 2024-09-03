@@ -1,20 +1,21 @@
 # ToDoApp
 
-ToDoApp is a simple web application for managing tasks. It allows users to create, update, and delete tasks, and categorize them into different categories.
-
+ToDoApp is a web application for managing personal tasks. It allows users to create, update, and delete tasks, categorize them into different categories, set due dates, and track their status.
 ## Features
 
-- Create, update, and delete tasks
-- Categorize tasks into different categories
-- Set due dates for tasks
-- Track the status of tasks (Open, Completed)
+-	Create, update, and delete tasks
+-	Categorize tasks into different categories
+-	Set due dates for tasks
+-	Track the status of tasks (Open, Completed)
+-	Prioritize tasks
+-	Sort and filter tasks for better management
 
 ## Technologies Used
 
 - ASP.NET Core
 - Entity Framework Core
 - SQL Server
-
+-	Bootstrap (for styling)
 ## Getting Started
 
 ### Prerequisites
