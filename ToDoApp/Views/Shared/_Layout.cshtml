@@ -12,12 +12,13 @@
 </head>
 <body>
     <div class="container">
-        <button id="theme-toggle" class="btn btn-light float-end">Light ☀️</button>
-        <header class="bg-success text-white text-center">
-            <div>
-				<h2 class="m-3 p-3">My Tasks</h2>
-			</div>
-        </header>
+        <nav class="navbar navbar-expand-lg color-gradient mb-3">
+            <div class="container-fluid">
+				<h2><a class="navbar-brand m-3 p-3 text-white" asp-area="" asp-controller="Home" asp-action="Index">My Tasks</a></h2>
+
+                <button id="theme-toggle" class="btn btn-light float-end">Light Mode ☀️</button>
+            </div>
+        </nav>
         <main>
             @RenderBody()
         </main>
@@ -37,12 +38,12 @@
             var currentTheme = htmlElement.getAttribute('data-bs-theme');
             if (currentTheme === 'dark') {
                 htmlElement.setAttribute('data-bs-theme', 'light');
-                this.textContent = 'Dark 🌚';
+                this.textContent = 'Dark Mode 🌚';
                 this.classList.remove('btn-light');
                 this.classList.add('btn-dark');
             } else {
                 htmlElement.setAttribute('data-bs-theme', 'dark');
-                this.textContent = 'Light ☀️';
+                this.textContent = 'Light Mode ☀️';
                 this.classList.remove('btn-dark');
                 this.classList.add('btn-light');
             }

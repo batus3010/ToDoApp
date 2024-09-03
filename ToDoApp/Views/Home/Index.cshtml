@@ -86,15 +86,15 @@
 				<tbody>
 					@foreach(ToDo task in Model)
 					{
-						string rowClass = task.Status.StatusName == "Completed" ? "completed-task" : "";
-						string overDue = task.Overdue ? "bg-warning" : "";
-						<tr class="@rowClass">
-							<td>@task.Description</td>
-							<td class="text-center">@task.Category.CategoryName</td>
-							<td class="@overDue">@task.DueTime.ToShortDateString()</td>
-							<td class="@overDue">@task.Status.StatusName</td>
-							<td>@task.Priority.PriorityNameWithColor</td>
-							<td class="text-center">
+						string rowClass = task.Status.StatusName == "Completed" ? "completed-task text-muted" : "";
+						string overDue = task.Overdue ? "text-warning" : "";
+						<tr>
+							<td class="@rowClass">@task.Description</td>
+							<td class="text-center @rowClass">@task.Category.CategoryName</td>
+							<td class="@overDue @rowClass">@task.DueTime.ToShortDateString()</td>
+							<td class="@overDue @rowClass">@(task.Overdue ? "Overdue" : task.Status.StatusName)</td>
+							<td class="@rowClass" >@task.Priority.PriorityNameWithColor</td>
+							<td class="text-center @rowClass">
 								@if (task.StatusId == "open")
 								{
 									<button type="submit" class="btn btn-primary btn-sm" name="@nameof(ToDo.Id)" value="@task.Id">Done✅</button>
