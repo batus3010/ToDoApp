@@ -6,6 +6,7 @@
 
 <div class="row">
 	<div class="col-md-2">
+		<h3 class="bg-success text-white text-center">Filters</h3>
 		<form asp-action="Filter" method="post">
 			<div class="mb-3">
 				<label class="form-label">Category</label>
@@ -42,14 +43,14 @@
 	</div>
 	<div class="col-md-10">
 		<form asp-action="DeleteComplete" method="post" asp-route-id="@ViewBag.Filters.FilterString">
-			<a asp-action="Add" class="btn btn-primary ">Add new task</a>
+			<a asp-action="Add" class="btn btn-primary ">New task</a>
             <button type="submit" class="btn btn-primary float-end">Delete completed tasks</button>
 		</form>
 		<form asp-action="MarkComplete" method="post" asp-route-id="@ViewBag.Filters.FilterString">
 
 
 			<table class="table table-borderd table-striped mt-2">
-				<thead>
+				<thead class="text-center">
 					<tr>
 						<th>Description</th>
 						<th>Category</th>
@@ -90,10 +91,10 @@
 						string overDue = task.Overdue ? "bg-warning" : "";
 						<tr class="@rowClass">
 							<td>@task.Description</td>
-							<td>@task.Category.CategoryName</td>
+							<td class="text-center">@task.Category.CategoryName</td>
 							<td class="@overDue">@task.DueTime.ToShortDateString()</td>
 							<td class="@overDue">@task.Status.StatusName</td>
-							<td>@task.Priority.PriorityName</td>
+							<td>@task.Priority.PriorityNameWithColor</td>
 							<td class="text-center">
 								@if (task.StatusId == "open")
 								{
