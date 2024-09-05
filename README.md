@@ -1,6 +1,8 @@
 # ToDoApp
 
 ToDoApp is a web application for managing personal tasks. It allows users to create, update, and delete tasks, categorize them into different categories, set due dates, and track their status.
+![image](https://github.com/user-attachments/assets/653f4835-43f2-4cce-8a6a-7377b9e2270b)
+
 ## Features
 
 -	Create, update, and delete tasks
