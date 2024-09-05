@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace ToDoApp.Models
 {
-    public class ToDoContext : DbContext
+    public class ToDoContext : IdentityDbContext<ApplicationUser>
     {
         public ToDoContext(DbContextOptions<ToDoContext> options) : base(options) { }
 
@@ -16,6 +17,8 @@ namespace ToDoApp.Models
         // seed data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.Entity<Category>().HasData(
                 new Category { CategoryId = "work", CategoryName = "Work" },
                 new Category { CategoryId = "home", CategoryName = "Home" },
