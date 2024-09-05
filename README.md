@@ -9,6 +9,8 @@ ToDoApp is a web application for managing personal tasks. It allows users to cre
 -	Track the status of tasks (Open, Completed)
 -	Prioritize tasks
 -	Sort and filter tasks for better management
+- User authentication and authorization with ASP.NET Identity
+
 
 ## Technologies Used
 
@@ -16,6 +18,8 @@ ToDoApp is a web application for managing personal tasks. It allows users to cre
 - Entity Framework Core
 - SQL Server
 -	Bootstrap (for styling)
+- ASP.NET Identity (for authentication and authorization)
+
 ## Getting Started
 
 ### Prerequisites
